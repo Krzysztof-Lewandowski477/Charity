@@ -9,9 +9,10 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.List;
 
+
 @Getter
 @Setter
-@ToString(exclude = {"donations"})
+@ToString(exclude = {""})
 @EqualsAndHashCode(of = "id")
 
 @Entity
@@ -21,7 +22,10 @@ public class Institution {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    //Fundacja "bez domu"
+    @Column(unique = true, nullable = false)
     private String name;
+    //cel i misja
     private String description;
 
     @OneToMany(mappedBy = "institution")
