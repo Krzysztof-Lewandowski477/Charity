@@ -1,6 +1,7 @@
 package pl.coderslab.charity.domain.entities;
 
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,9 +12,10 @@ import javax.persistence.*;
 @Setter
 @ToString(exclude = {""})
 @Inheritance(strategy = InheritanceType.JOINED)
+@EqualsAndHashCode(of = "id")
 
 @Entity
-@Table(name="category")
+@Table(name="categories")
 public class Category {
 
 
