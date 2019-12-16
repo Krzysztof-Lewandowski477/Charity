@@ -11,17 +11,18 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString(exclude = {""})
-@Inheritance(strategy = InheritanceType.JOINED)
 @EqualsAndHashCode(of = "id")
 
 @Entity
-@Table(name="categories")
+@Table(name = "categories")
 public class Category {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true, nullable = false)
+    //ubrania i zabawki
     private String name;
 
 
