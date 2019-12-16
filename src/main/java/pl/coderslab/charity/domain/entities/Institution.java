@@ -7,15 +7,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
-@ToString(exclude = {""})
+@ToString(exclude = {"donations"})
 @EqualsAndHashCode(of = "id")
 
 @Entity
-@Table(name = "users")
-public class Instiution {
+@Table(name = "institutions")
+public class Institution {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +24,6 @@ public class Instiution {
     private String name;
     private String description;
 
+    @OneToMany(mappedBy = "institution")
+    private List<Donation> donations;
 }
