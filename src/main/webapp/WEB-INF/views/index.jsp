@@ -17,7 +17,7 @@
 <section class="stats">
     <div class="container container--85">
         <div class="stats--item">
-            <em>${quantities}</em>
+            <em>${quantityBags}</em>
 
             <h3><spring:message code="pages.index.body.quantity"/></h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
@@ -25,7 +25,7 @@
         </div>
 
         <div class="stats--item">
-            <em>5</em>
+            <em>${organizations}</em>
             <h3><spring:message code="pages.index.body.organizations"/> </h3>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
                 quam.</p>
