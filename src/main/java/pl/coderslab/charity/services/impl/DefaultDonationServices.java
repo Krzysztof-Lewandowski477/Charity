@@ -1,5 +1,7 @@
 package pl.coderslab.charity.services.impl;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,7 +10,8 @@ import pl.coderslab.charity.services.DonationServices;
 
 
 @Transactional
-@Service
+@Service @Slf4j
+@RequiredArgsConstructor
 public class DefaultDonationServices implements DonationServices {
 
 
