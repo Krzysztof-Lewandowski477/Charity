@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="sprng" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -84,29 +84,20 @@
 
         <ul class="help--slides-items">
             <li>
-                <c:forEach items="${donations}" var="donation">
-                <div class="col">
-                    <div class="title">${donation.institution.name}</div>
-                    <div class="subtitle">${donation.institution.description}</div>
+                <c:forEach items="${institutions}" var="institution" varStatus="i">
+                <div class="col" >
+                    <div class="title">${institution.name}</div>
+                    <div class="subtitle">${institution.description}</div>
                 </div>
-                </c:forEach>
-                <div class="col">
-                    <div class="title">Fundacja "A kogo"</div>
-                    <div class="subtitle">Cel i misja: Pomoc wybudzaniu dzieci ze śpiączki.</div>
-                </div>
+                <c:choose>
+                    <c:when test="${i.count%2==0}">
+                        </li>
+                        <li>
+                    </c:when>
+                </c:choose>
+                        </c:forEach>
             </li>
 
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja “Dla dzieci"</div>
-                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
-                </div>
-                <div class="col">
-                    <div class="title">Fundacja “Bez domu”</div>
-                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-                </div>
-
-            </li>
 
         </ul>
     </div>
