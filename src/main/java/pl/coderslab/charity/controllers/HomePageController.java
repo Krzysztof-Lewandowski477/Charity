@@ -31,5 +31,16 @@ public class HomePageController {
         return "index";
     }
 
+    @GetMapping("/confirmation")
+    public String formConfirmation(){
+        return "form-confirmation";
+    }
+
+    @GetMapping("/form")
+    public String formGet(){
+
+        return "form";
+    }
+
 
 }
