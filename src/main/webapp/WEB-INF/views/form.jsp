@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -17,19 +18,19 @@
             </h1>
 
             <div class="slogan--steps">
-                <div class="slogan--steps-title">Wystarczą 4 proste kroki:</div>
+                <div class="slogan--steps-title"><spring:message code="pages.index.body.4steps"/></div>
                 <ul class="slogan--steps-boxes">
                     <li>
-                        <div><em>1</em><span>Wybierz rzeczy</span></div>
+                        <div><em>1</em><span><spring:message code="pages.index.body.4steps2"/></span></div>
                     </li>
                     <li>
-                        <div><em>2</em><span>Spakuj je w worki</span></div>
+                        <div><em>2</em><span><spring:message code="pages.form.bags"/></span></div>
                     </li>
                     <li>
-                        <div><em>3</em><span>Wybierz fundację</span></div>
+                        <div><em>3</em><span><spring:message code="pages.form.organization"/></span></div>
                     </li>
                     <li>
-                        <div><em>4</em><span>Zamów kuriera</span></div>
+                        <div><em>4</em><span><spring:message code="pages.index.body.4steps27"/></span></div>
                     </li>
                 </ul>
             </div>
