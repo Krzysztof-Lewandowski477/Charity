@@ -9,6 +9,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -26,12 +27,17 @@ public class DonationDataDTO {
     private String city;
     @NotNull
     private String zipCode;
+    @Size(min=9, max=9)
+    @NotNull
+    private Integer telephoneNumber;
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
-    @DateTimeFormat(pattern = "HH:mm:ss")
+    @NotNull
     private LocalTime pickUpTime;
-    @NotBlank
+
     private String pickUpComment;
+
     private List<Category> categories = new ArrayList<> ();
     private Institution institution;
 }
