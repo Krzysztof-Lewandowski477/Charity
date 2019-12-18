@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -61,8 +62,8 @@
 
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
-
-        <form action="form-confirmation.html" method="post">
+        <form:form modelAttribute="donations" method="post" >
+<%--        <form action="form-confirmation.html" method="post">--%>
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
@@ -93,7 +94,9 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <input type="number" name="bags" step="1" min="1" />
+                        <form:input path="quantity" type="number" step="1" min="1" requaired="true"/>
+                        <form:errors path="quantity"/>
+<%--                        <input type="number" name="bags" step="1" min="1" />--%>
                     </label>
                 </div>
 
@@ -109,33 +112,35 @@
             <div data-step="3">
                 <h3>Wybierz organizacje, której chcesz pomóc:</h3>
 
+            <c:forEach items="${institutions}" var="institution">
                 <div class="form-group form-group--checkbox">
                     <label>
-                        <input type="radio" name="organization" value="old" />
+                        <input type="radio" name="institution" value="${institution.id}" requaired="true" />
                         <span class="checkbox radio"></span>
                         <span class="description">
-                  <div class="title">Fundacja “Bez domu”</div>
+                  <div class="title">${institution.name}</div>
                   <div class="subtitle">
-                    Cel i misja: Pomoc dla osób nie posiadających miejsca
-                    zamieszkania
+                    ${institution.description}
                   </div>
                 </span>
                     </label>
-                </div>
 
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="radio" name="organization" value="old" />
-                        <span class="checkbox radio"></span>
-                        <span class="description">
-                  <div class="title">Fundacja “Dla dzieci"</div>
-                  <div class="subtitle">
-                    Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji
-                    życiowej.
-                  </div>
-                </span>
-                    </label>
                 </div>
+            </c:forEach>
+
+<%--                <div class="form-group form-group--checkbox">--%>
+<%--                    <label>--%>
+<%--                        <input type="radio" name="organization" value="old" />--%>
+<%--                        <span class="checkbox radio"></span>--%>
+<%--                        <span class="description">--%>
+<%--                  <div class="title">Fundacja “Dla dzieci"</div>--%>
+<%--                  <div class="subtitle">--%>
+<%--                    Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji--%>
+<%--                    życiowej.--%>
+<%--                  </div>--%>
+<%--                </span>--%>
+<%--                    </label>--%>
+<%--                </div>--%>
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
@@ -151,22 +156,28 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica <input type="text" name="address" /> </label>
+                            <label>Ulica<form:input path="street" cssClass="text" requaired="true"/><form:errors path="street"/> </label>
+<%--                            <label> Ulica <input type="text" name="address" /> </label>--%>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Miasto <input type="text" name="city" /> </label>
+                           <label> Miasto <form:input path="city" cssClass="text" /><form:errors path="city" requaired="true"/></label>
+<%--                            <label> Miasto <input type="text" name="city" /> </label>--%>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <input type="text" name="postcode" />
+                               Kod pocztowy <form:input path="zipCode" cssClass="text" name="postcode" requaired="true"/>
+                                <form:errors path="zipCode"/>
+<%--                                Kod pocztowy <input type="text" name="postcode" />--%>
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <input type="phone" name="phone" />
+                                Numer telefonu <form:input path="telephoneNumber"  type="phone" />
+                                <form:errors path="telephoneNumber" cssClass="help is-danger"/>
+<%--                                Numer telefonu <input type="phone" name="phone" />--%>
                             </label>
                         </div>
                     </div>
@@ -174,17 +185,22 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <input type="date" name="data" /> </label>
+                           <label> Data <from:input path="pickUpDate" cssClass="date" type="date" requaired="true"/><form:errors path="pickUpDate"/></label>
+<%--                            <label> Data <input type="date" name="data" /> </label>--%>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <input type="time" name="time" /> </label>
+                           <label> Godzina <form:input path="pickUpTime" type="time" />
+                               <form:errors path="pickUpTime"/>
+                           </label>
+<%--                            <label> Godzina <input type="time" name="time" /> </label>--%>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <textarea name="more_info" rows="5"></textarea>
+                                <form:textarea path="pickUpComment" rows="5" /> <form:errors path="pickUpComment"/>
+<%--                                <textarea name="more_info" rows="5"></textarea>--%>
                             </label>
                         </div>
                     </div>
@@ -246,7 +262,8 @@
                     <button type="submit" class="btn">Potwierdzam</button>
                 </div>
             </div>
-        </form>
+<%--        </form>--%>
+        </form:form>
     </div>
 </section>
 <%--footer--%>
