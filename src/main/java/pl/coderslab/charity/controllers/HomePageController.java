@@ -36,11 +36,7 @@ public class HomePageController {
         return "form-confirmation";
     }
 
-    @GetMapping("/form")
-    public String formGet(){
 
-        return "form";
-    }
 
 
 }
