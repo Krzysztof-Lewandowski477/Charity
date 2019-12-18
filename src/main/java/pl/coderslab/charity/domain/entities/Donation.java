@@ -35,10 +35,13 @@ public class Donation {
     private String city;
     @Column(nullable = false)
     private String zipCode;
+    @Column(nullable = false)
+    private Integer telephoneNumber;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
-    @DateTimeFormat(pattern = "HH:mm:ss")
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime pickUpTime;
+
     private String pickUpComment;
 
     @ManyToMany
