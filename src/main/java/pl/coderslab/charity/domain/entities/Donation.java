@@ -27,12 +27,17 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     //liczba worków
+    @Column(nullable = false)
     private Integer quantity;
+    @Column(nullable = false)
     private String street;
+    @Column(nullable = false)
     private String city;
+    @Column(nullable = false)
     private String zipCode;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
+    @DateTimeFormat(pattern = "HH:mm:ss")
     private LocalTime pickUpTime;
     private String pickUpComment;
 
