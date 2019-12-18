@@ -1,4 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -64,56 +66,20 @@
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
+               <c:forEach items="${categories}" var="category">
 
                 <div class="form-group form-group--checkbox">
                     <label>
                         <input
                                 type="checkbox"
                                 name="categories"
-                                value="clothes-to-use"
+                                value="${category.id}"
                         />
                         <span class="checkbox"></span>
-                        <span class="description"
-                        >ubrania, które nadają się do ponownego użycia</span
-                        >
+                        <span class="description">${category.name}</span>
                     </label>
                 </div>
-
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input
-                                type="checkbox"
-                                name="categories"
-                                value="clothes-useless"
-                        />
-                        <span class="checkbox"></span>
-                        <span class="description">ubrania, do wyrzucenia</span>
-                    </label>
-                </div>
-
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" name="categories" value="toys" />
-                        <span class="checkbox"></span>
-                        <span class="description">zabawki</span>
-                    </label>
-                </div>
-
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" name="categories" value="books" />
-                        <span class="checkbox"></span>
-                        <span class="description">książki</span>
-                    </label>
-                </div>
-
-                <div class="form-group form-group--checkbox">
-                    <label>
-                        <input type="checkbox" name="categories" value="other" />
-                        <span class="checkbox"></span>
-                        <span class="description">inne</span>
-                    </label>
-                </div>
+               </c:forEach>
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
