@@ -1,16 +1,56 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
-<%@ page isELIgnored="false" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <jsp:include page="/WEB-INF/views/elements/head.jsp"/>
     <title>Form</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 </head>
 <body>
+<script>
+    function createSummary() {
+        var x = document.getElementById("streetID");
+        document.getElementById("liStreetID").innerHTML = x.value;
+        x = document.getElementById("cityID");
+        document.getElementById("liCityID").innerHTML = x.value;
+        x = document.getElementById("codeID");
+        document.getElementById("liCodeID").innerHTML = x.value;
+        x = document.getElementById("phoneID");
+        document.getElementById("liPhoneID").innerHTML = x.value;
+        x = document.getElementById("quantityID");
+        document.getElementById("liQuantityID").innerHTML = x.value + ',';
+        x = document.getElementById("dateID");
+        document.getElementById("liDateID").innerHTML = x.value;
+        x = document.getElementById("timeID");
+        document.getElementById("liTimeID").innerHTML = x.value;
+        x = document.getElementById("commentID");
+        document.getElementById("liCommentID").innerHTML = x.value;
+
+        var radioElems = document.getElementsByName('institution');
+
+        for (i = 0; i < radioElems.length; i++) {
+            if (radioElems[i].checked) {
+                document.getElementById("liInstitutionNameID").innerHTML = '"' + radioElems[i].dataset.orgname + '"';
+            }
+        }
+
+        // insideID
+        var categoriesElems = document.getElementsByName('categories');
+        var categoriesSummary = '';
+        for (i = 0; i < categoriesElems.length; i++) {
+            if (categoriesElems[i].checked)
+                categoriesSummary += categoriesElems[i].nextElementSibling.nextElementSibling.innerHTML + ', ';
+        }
+        document.getElementById("liInsideID").innerHTML = categoriesSummary;
+    }
+</script>
 <header class="header--form-page">
 <jsp:include page="/WEB-INF/views/elements/headerUser.jsp"/>
     <div class="slogan container container--90">
@@ -94,8 +134,10 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <form:input path="quantity" type="number" step="1" min="1" requaired="true"/>
-                        <form:errors path="quantity"/>
+<%--                        <form:input path="quantity" type="number" step="1" min="1" requaired="true"/>--%>
+<%--                        <form:errors path="quantity"/>--%>
+                        <input type="number" name="quantity" step="1" min="1"
+                               id="quantityID"/>
 <%--                        <input type="number" name="bags" step="1" min="1" />--%>
                     </label>
                 </div>
@@ -128,19 +170,7 @@
                 </div>
             </c:forEach>
 
-<%--                <div class="form-group form-group--checkbox">--%>
-<%--                    <label>--%>
-<%--                        <input type="radio" name="organization" value="old" />--%>
-<%--                        <span class="checkbox radio"></span>--%>
-<%--                        <span class="description">--%>
-<%--                  <div class="title">Fundacja “Dla dzieci"</div>--%>
-<%--                  <div class="subtitle">--%>
-<%--                    Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji--%>
-<%--                    życiowej.--%>
-<%--                  </div>--%>
-<%--                </span>--%>
-<%--                    </label>--%>
-<%--                </div>--%>
+
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
@@ -156,7 +186,7 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label>Ulica<form:input path="street" cssClass="text" requaired="true"/><form:errors path="street"/> </label>
+                            <label>Ulica<form:input path="street" id="streetID" cssClass="text" requaired="true"/><form:errors path="street"/> </label>
 <%--                            <label> Ulica <input type="text" name="address" /> </label>--%>
                         </div>
 
@@ -175,8 +205,10 @@
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <form:input path="telephoneNumber"  type="phone" />
-                                <form:errors path="telephoneNumber" cssClass="help is-danger"/>
+<%--                                Numer telefonu <form:input path="telephoneNumber"  type="phone" />--%>
+<%--                                <form:errors path="telephoneNumber" cssClass="help is-danger"/>--%>
+                                Numer telefonu <input type="phone" name="telephoneNumber"
+                                                      id="phoneID"/>
 <%--                                Numer telefonu <input type="phone" name="phone" />--%>
                             </label>
                         </div>
@@ -185,8 +217,11 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                           <label> Data <from:input path="pickUpDate" cssClass="date" type="date" requaired="true"/><form:errors path="pickUpDate"/></label>
-<%--                            <label> Data <input type="date" name="data" /> </label>--%>
+<%--                           <label> Data <form:input path="pickUpDate" cssClass="date" type="date" requaired="true"/><form:errors path="pickUpDate"/></label>--%>
+<%--
+                                <label> Data <input type="date" name="data" /> </label>--%>
+    <label> Data <input type="date" name="pickUpDate"
+                        id="dateID"/></label>
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -221,16 +256,14 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text"
-                                >4 worki ubrań w dobrym stanie dla dzieci</span
-                                >
+                                <span class="summary--text">worki w ilości <div
+                                        id="liQuantityID">0,</div> zawartość: <div
+                                        id="liInsideID">(default value)</div></span>
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text"
-                                >Dla fundacji "Mam marzenie" w Warszawie</span
-                                >
+                                <span class="summary--text">Dla fundacji <div id="liInstitutionNameID">Default institution</div></span>
                             </li>
                         </ul>
                     </div>
@@ -239,19 +272,19 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li>Prosta 51</li>
-                                <li>Warszawa</li>
-                                <li>99-098</li>
-                                <li>123 456 789</li>
+                                <li id="liStreetID">Default street</li>
+                                <li id="liCityID">Default city</li>
+                                <li id="liCodeID">default code</li>
+                                <li id="liPhoneID">Default phone</li>
                             </ul>
                         </div>
 
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li>13/12/2018</li>
-                                <li>15:40</li>
-                                <li>Brak uwag</li>
+                                <li id="liDateID">00/00/0000</li>
+                                <li id="liTimeID">00:00</li>
+                                <li id="liCommentID">Brak uwag</li>
                             </ul>
                         </div>
                     </div>
