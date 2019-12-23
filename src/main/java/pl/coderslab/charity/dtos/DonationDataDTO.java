@@ -27,9 +27,9 @@ public class DonationDataDTO {
     private String city;
     @NotNull
     private String zipCode;
-    @Size(min=9, max=9)
+
     @NotNull
-    private Integer telephoneNumber;
+    private String phoneNumber;
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
@@ -38,6 +38,5 @@ public class DonationDataDTO {
 
     private String pickUpComment;
 
-    private List<Category> categories = new ArrayList<> ();
-    private Institution institution;
+
 }

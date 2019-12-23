@@ -76,7 +76,7 @@
                             <label>
                                 Liczba 60l worków:
                                 <input type="number" name="quantity" step="1" min="1"
-                                       id="quantityID"/>
+                                       id="quantityID"/><form:errors path="quantity" id="quantityID"/>
                                     <%--<input type="number" name="bags" step="1" min="1"/>--%>
                             </label>
                         </div>

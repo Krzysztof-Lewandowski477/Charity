@@ -30,8 +30,7 @@ public class DefaultDonationServices implements DonationServices {
     public void addDonation(DonationDataDTO donationData) {
         ModelMapper modelMapper = new ModelMapper ();
         Donation donation = modelMapper.map(donationData, Donation.class);
-//        donation.setPickUpDate ( LocalDate.now ());
-//       donation.setPickUpTime ( LocalTime.now () );
+
         log.debug ( "zapis dotacji: {}", donation );
         donationRepository.save ( donation );
         log.debug ( "zapisano dotacje: {}", donation );
