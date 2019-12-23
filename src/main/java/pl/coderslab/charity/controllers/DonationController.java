@@ -1,6 +1,7 @@
 package pl.coderslab.charity.controllers;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.domain.entities.Category;
 import pl.coderslab.charity.domain.entities.Institution;
 import pl.coderslab.charity.domain.repository.CategoryRepository;
 import pl.coderslab.charity.domain.repository.InstitutionRepository;
@@ -32,29 +34,33 @@ public class DonationController {
         this.institutionRepository = institutionRepository;
     }
 
+    @ModelAttribute("categories")
+    public List<Category> getCategories() {
+        return categoryRepository.findAll();
+    }
+
     @ModelAttribute("institutions")
-    public List<Institution> authors() {
+    public List<Institution> getInstitutions() {
         return institutionRepository.findAll();
     }
 
     @GetMapping("/form")
     public String formGet(Model model){
 
-        model.addAttribute ( "categories", categoryRepository.findAll () );
         model.addAttribute ( "donations" , new DonationDataDTO ());
-        model.addAttribute ( "institutions" , institutionRepository.findAll () );
-        return "form";
+
+        return "donation" ;
     }
 
-    @PostMapping("/form")
+    @PostMapping(value = "/form")
     public String formPost(@ModelAttribute("donations")@Valid DonationDataDTO donationData, BindingResult result){
 
         if(result.hasErrors ()){
-            return "/form";
+            return "donation";
         }
-        log.debug ( "co sie stało ?", donationData );
+        log.debug ( "co sie stało {}", donationData );
         donationServices.addDonation ( donationData );
-        log.debug ( "co sie stało ?", donationData );
+        log.debug ( "co sie stało :{}", donationData );
         return "form-confirmation";
     }
 
