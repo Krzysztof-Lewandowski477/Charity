@@ -39,14 +39,14 @@ public class DonationController {
         return categoryRepository.findAll();
     }
 
-    @ModelAttribute("institutions")
-    public List<Institution> getInstitutions() {
-        return institutionRepository.findAll();
-    }
+//    @ModelAttribute("institutions")
+//    public List<Institution> getInstitutions() {
+//        return institutionRepository.findAll();
+//    }
 
     @GetMapping("/form")
     public String formGet(Model model){
-
+        model.addAttribute ( "institutions", institutionRepository.findAll () );
         model.addAttribute ( "donations" , new DonationDataDTO ());
 
         return "donation" ;
