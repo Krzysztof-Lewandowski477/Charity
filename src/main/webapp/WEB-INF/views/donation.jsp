@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -18,8 +19,33 @@
 <script src="<c:url value="./resources/js/app2.js"/>"></script>
 
 <header class="header--form-page">
-    <jsp:include page="/WEB-INF/views/elements/headerUser.jsp"/>
 
+    <nav class="container container--70">
+        <ul class="nav--actions">
+            <sec:authentication var="user" property="principal"/>
+            <sec:authorize access="hasRole('ROLE_USER') and isAuthenticated()">
+                <li>
+                    <button class="btn btn--small btn--highlighted">Witaj ${user.name} ${user.surname}</button>
+                </li>
+                <li><a href="/logged" class="btn btn--small btn--highlighted">Menu</a></li>
+                <li><a href="/logout" class="btn btn--small btn--highlighted">Wyloguj</a></li>
+            </sec:authorize>
+
+            <sec:authorize access="!isAuthenticated()">
+                <li><a href="/login" class="btn btn--small btn--highlighted">Zaloguj</a></li>
+                <li><a href="/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            </sec:authorize>
+        </ul>
+
+        <ul>
+            <li><a href="/#" class="btn btn--without-border active">Start</a></li>
+            <li><a href="/#whatisallabout" class="btn btn--without-border">O co chodzi?</a></li>
+            <li><a href="/#aboutus" class="btn btn--without-border">O nas</a></li>
+            <li><a href="/#institutions" class="btn btn--without-border">Fundacje i organizacje</a></li>
+            <li><a href="/donation" class="btn btn--without-border">Przekaż dary</a></li>
+            <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
+        </ul>
+    </nav>
     <br><br><br><br><br><br><br><br>
 
     <div class="container container--90">
@@ -95,6 +121,7 @@
                         <c:forEach varStatus="counter" items="${institutions}">
                             <div class="form-group form-group--checkbox">
                                 <label>
+
                                     <input type="radio" name="institution"
                                            value="${institutions[counter.index].id}"
                                            data-orgname="${institutions[counter.index].name}"/>
