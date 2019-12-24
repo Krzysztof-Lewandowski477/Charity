@@ -49,4 +49,6 @@ public class Donation {
 //po darach sumowanie distinct
     @ManyToOne
     private Institution institution;
+    @ManyToOne
+    private User user;
 }
