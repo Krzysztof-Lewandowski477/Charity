@@ -11,6 +11,11 @@ public class RegistrationDataDTO {
     @NotBlank
     @Email
     private String email;
+    @NotBlank
+    private String name;
+    @NotBlank
+    private String surname;
+
     private String password;
     private String rePassword;
 }
