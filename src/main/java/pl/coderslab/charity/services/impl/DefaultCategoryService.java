@@ -14,8 +14,12 @@ import pl.coderslab.charity.services.CategoryService;
 @Service @Slf4j @RequiredArgsConstructor
 public class DefaultCategoryService implements CategoryService {
 
+
     @Autowired
      private CategoryRepository categoryRepository;
+
+
+
 
 
     @Override
@@ -24,4 +28,23 @@ public class DefaultCategoryService implements CategoryService {
         Category category = modelMapper.map ( categoryDataDTO,Category.class );
         categoryRepository.save ( category );
     }
+
+    @Override
+    public void update(CategoryDataDTO categoryDataDTO ,Long id) {
+
+        ModelMapper modelMapper= new ModelMapper ();
+        Category category = modelMapper.map(categoryDataDTO,Category.class);
+        categoryRepository.findById ( id );
+        categoryRepository.save ( category );
+    }
+
+
+    @Override
+    public void delete(CategoryDataDTO categoryDataDTO, Long id) {
+        ModelMapper modelMapper = new ModelMapper ();
+        Category category = modelMapper.map ( categoryDataDTO, Category.class );
+        categoryRepository.delete ( category );
+    }
+
+
 }
