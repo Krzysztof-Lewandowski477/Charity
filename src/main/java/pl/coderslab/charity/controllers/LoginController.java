@@ -13,7 +13,7 @@ public class LoginController {
         if(request.isUserInRole ( "ROLE_USER" )){
             return "index";
         }else if(request.isUserInRole ( "ROLE_ADMIN" )){
-            return "admin";
+            return "admin/admin";
         }
         return "login";
     }
@@ -31,7 +31,7 @@ public class LoginController {
     @GetMapping("/admin")
     public String onlyForLoggedAdmin(HttpServletRequest request) {
         if (request.isUserInRole("ROLE_ADMIN")) {
-            return "admin";
+            return "admin/admin";
         }
         return "redirect:/admin";
     }
