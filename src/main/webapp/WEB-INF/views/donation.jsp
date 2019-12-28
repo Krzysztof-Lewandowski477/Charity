@@ -26,7 +26,7 @@
             <sec:authorize access="hasRole('ROLE_USER') and isAuthenticated()">
                 <li>
                     <sec:csrfInput/>
-                    <button class="btn btn--small btn--highlighted">Witaj ${user.name} ${user.surname}</button>
+                    <button class="btn btn--small btn--highlighted">Witaj </button>
                 </li>
                 <li><a href="/logged" class="btn btn--small btn--highlighted">Menu</a></li>
                 <li><a href="/logout" class="btn btn--small btn--highlighted">Wyloguj</a></li>
