@@ -30,22 +30,29 @@ public class AdminController {
         this.roleRepository = roleRepository;
         this.categoryRepository = categoryRepository;
     }
-/*model categories vwievs*/
+
+    /*model categories vwievs*/
     @ModelAttribute("catrgories")
-    public List<Category> categories () {
-        return categoryRepository.findAll (  );
+    public List<Category> categories() {
+        return categoryRepository.findAll ();
     }
-/*moddel implements in adnim.jsp
-* method findById(role)*/
+
+    /*moddel implements in adnim.jsp
+     * method findById(role)*/
     @ModelAttribute("admins")
     public List<User> admins() {
-        Role role = roleRepository.findById(2);
-        return userRepository.findUsersByRoles(role); }
-
+        Role role = roleRepository.findById ( 2 );
+        return userRepository.findUsersByRoles ( role );
+    }
 
 
     @GetMapping("/admins")
     public String allAdminsPageShow() {
         return "admin/admins";
+    }
+
+    @GetMapping("/")
+    public String adminPageShow() {
+        return "admin/admin";
     }
 }
