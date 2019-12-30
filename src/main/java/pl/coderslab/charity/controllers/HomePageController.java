@@ -28,6 +28,7 @@ public class HomePageController {
         model.addAttribute ( "institutions", institutionRepository.findAll () );
         model.addAttribute ( "quantityBags", donationServices.sumQuantitiesBags () );
         model.addAttribute ( "organizations", donationServices.institutionsSum () );
+
         return "index";
     }
 
