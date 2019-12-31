@@ -18,9 +18,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final DataSource dataSource;
 
-    public SecurityConfiguration(DataSource dataSource) {
+    public SecurityConfiguration(DataSource dataSource, SimpleAuthenticationSuccessHandler simpleAuthenticationSuccessHandler) {
         this.dataSource = dataSource;
+        this.simpleAuthenticationSuccessHandler = simpleAuthenticationSuccessHandler;
     }
+
+  private final SimpleAuthenticationSuccessHandler simpleAuthenticationSuccessHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -40,7 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring ().antMatchers ( "/public_html/**" ,"/image/**" ,"/resources/**").antMatchers ( "/webjars/**" )
+        web.ignoring ().antMatchers ( "/public_html/**" ,"/image/**" ,"/resources/**","/commons/**").antMatchers ( "/webjars/**" )
                 .antMatchers ( "/h2-console","/h2-console/**" );
     }
 
@@ -59,7 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginPage ( "/login")
                 .usernameParameter ( "email" )
                 .passwordParameter ( "password" )
-                .defaultSuccessUrl ( "/" )
+                .successHandler ( simpleAuthenticationSuccessHandler )
                 .and ()
                 .logout ()
                 .logoutUrl ( "/logout" )
