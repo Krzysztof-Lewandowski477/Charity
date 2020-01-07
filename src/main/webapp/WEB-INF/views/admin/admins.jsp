@@ -76,8 +76,8 @@
                                 <c:forEach items="${admins}" var="user" varStatus="theCount">
                                     <tr>
                                         <th scope="row">${theCount.count}</th>
-                                        <td></td>
-                                        <td></td>
+                                        <td>${user.name}</td>
+                                        <td>${user.surname}</td>
                                         <td>${user.email}</td>
                                         <td></td>
                                         <td>${user.active}</td>
