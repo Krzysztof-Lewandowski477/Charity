@@ -133,11 +133,11 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <input type="date" id="date" name="date"/></label>
+                            <label> Data <input type="date" id="form-date" name="date"/></label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <input type="time" name="time" id="time"/></label>
+                            <label> Godzina <input type="time" name="time" id="form-time"/></label>
                         </div>
 
                         <div class="form-group form-group--inline">
