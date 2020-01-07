@@ -13,27 +13,29 @@
 </head>
 <body>
 <jsp:include page="../elements/header.jsp"/>
-<div class="container container--85">
-    <table id="tabAdmins">
+<div class="container container--85" style="text-align: center;">
+    <table id="tabAdmins" style="text-align: center;">
         <h1>Moje dary</h1>
         <h2>
             <tr>
-                <td> Id:  <br/>
-                <td> Ilośc worków:  <br/>
-                <td> Miasto: </td>
-                <td> Komentarz:</td>
-                <td> Data odbioru:</td>
+                <td> Id  <br/>
+                <td> Ilośc worków  <br/>
+                <td> Miasto </td>
+                <td> Komentarz</td>
+                <td> Akcje</td>
             </tr>
             <for:forEach items="${donations}" var="donation" varStatus="i">
-                <tr>
-                    <td>${i.count}</td>
-                    <td>${donation.quantity}</td>
-                    <td>${donation.city}</td>
-                    <td>${donation.pickUpComment}</td>
-                    <td>${donation.pickUpDate}, ${donation.pickUpTime}</td>
+                <td>${i.count}</td>
+                <td>${donation.quantity}</td>
+                <td>${donation.city}</td>
+                <td>${donation.pickUpComment}</td>
+                <td><b> <a href="${detailsURL}">Szczegóły</a></b></td>
+                <c:url value="/donation/details" var="detailsURL">
+                    <c:param name="id" value="${donation.id}"/>
+                </c:url>
 
 
-        <sec:csrfInput/>
+
                 </tr>
             </for:forEach>
         </h2>

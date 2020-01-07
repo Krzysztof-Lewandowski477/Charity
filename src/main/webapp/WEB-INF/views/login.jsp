@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" />
 </head>
 <body>
-<jsp:include page="./elements/header.jsp"/>
-<section class="login-page">
+
+<section class="">
     <h2>Zaloguj się</h2>
     <form method="post" action="/login">
         <div class="form-group">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group form-group--buttons">
-            <a href="/register" class="btn btn--without-border">Załóż konto</a>
+            <a href="/register" class="btn">Załóż konto</a>
             <button class="btn" type="submit">Zaloguj się</button>
         </div>
         <sec:csrfInput/>

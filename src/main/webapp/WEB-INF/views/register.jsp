@@ -12,7 +12,7 @@
 </head>
 <body>
 <jsp:include page="./elements/header.jsp"/>
-<section class="login-page">
+<section class="">
     <h2>Załóż konto</h2>
     <form:form method="post" modelAttribute="registrationData">
         <div class="form-group">
