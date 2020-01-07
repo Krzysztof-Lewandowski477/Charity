@@ -4,12 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.domain.entities.Category;
 import pl.coderslab.charity.domain.entities.Donation;
-import pl.coderslab.charity.domain.entities.Institution;
 import pl.coderslab.charity.domain.repository.CategoryRepository;
 import pl.coderslab.charity.domain.repository.DonationRepository;
 import pl.coderslab.charity.domain.repository.InstitutionRepository;
@@ -75,6 +73,23 @@ public class DonationController {
 
 
         return "form-confirmation";
+    }
+
+    @GetMapping("donation/details")
+    public String detailsPage(Long id, Model model){
+        model.addAttribute("donation", donationRepository.findDonationById(id));
+        return "user/donationdetails";
+    }
+
+    @GetMapping("donation/changestatus")
+    public String changeDonationStatus(Long id){
+        Donation donation = donationRepository.findDonationById(id);
+        if(donation.getStatus() == "odebrany"){
+            donationRepository.changeStatusToUnGet(id);
+        }else{
+            donationRepository.changeStatusToGet(id);
+        }
+        return "user/donationdetails";
     }
 
 }
