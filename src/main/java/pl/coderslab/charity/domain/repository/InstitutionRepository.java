@@ -6,7 +6,7 @@ import pl.coderslab.charity.domain.entities.Institution;
 
 
 public interface InstitutionRepository extends JpaRepository<Institution, Long> {
-
+    Institution findByName(String name);
 
 
 }
