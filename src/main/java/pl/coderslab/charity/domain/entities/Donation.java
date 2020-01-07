@@ -15,7 +15,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString(exclude = {"categories","institution"})
+
 @EqualsAndHashCode(of = "id")
 
 @Entity
@@ -43,6 +43,8 @@ public class Donation {
     private LocalTime pickUpTime;
 
     private String pickUpComment;
+
+    private String status;
 
     @ManyToMany
     private List<Category> categories = new ArrayList<> ();
