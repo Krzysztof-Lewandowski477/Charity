@@ -8,7 +8,7 @@ import pl.coderslab.charity.domain.entities.Role;
 import pl.coderslab.charity.domain.entities.User;
 
 import java.util.List;
-import java.util.Optional;
+
 
 public interface UserRepository  extends JpaRepository<User, Long> {
 
