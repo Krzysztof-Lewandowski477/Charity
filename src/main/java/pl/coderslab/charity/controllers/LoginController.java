@@ -18,7 +18,7 @@ public class LoginController {
         return "login";
     }
 
-    // nie da się GÓWNA ODPALIĆ DO ADMINA
+
     @GetMapping("/logged")
     public String onlyForLoggedIn(HttpServletRequest request) {
         if (request.isUserInRole ( "ROLE_USER" )) {
