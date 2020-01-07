@@ -13,10 +13,16 @@
             <li><a href="/register" class="btn btn--small btn--highlighted"><spring:message code="pages.create.account"/></a></li>
 </sec:authorize>
             <sec:authorize access="hasRole('ADMIN')">
-                <li><a href="/" class="btn btn--small btn--without-border">Administratorzy</a></li>
-                <li><a href="/" class="btn btn--small btn--without-border">Użytkownicy</a></li>
-                <li><a href="/login" class="btn btn--small btn--without-border">Instytucje</a></li>
+                <li><a href="/admin/admins" class="btn btn--small btn--without-border">Administratorzy</a></li>
+                <li><a href="/admins/users" class="btn btn--small btn--without-border">Użytkownicy</a></li>
+                <li><a href="/admin/institutions" class="btn btn--small btn--without-border">Instytucje</a></li>
 
+            </sec:authorize>
+            <sec:authorize access="hasRole('USER')">
+                <li><a href="/user/donations" class="btn btn--small btn--without-border">Moje dary</a></li>
+            </sec:authorize>
+            <sec:authorize access="hasRole('USER')">
+                <li><a href="/user/manage" class="btn btn--small btn--without-border">Moje konto</a></li>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
                 <li>
@@ -27,6 +33,7 @@
                 </li>
             </sec:authorize>
         </ul>
+
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
             <li><a href="#about" class="btn btn--without-border"><spring:message code="pages.what.is.going.on"/></a></li>
@@ -36,11 +43,4 @@
         </ul>
     </nav>
 
-    <div class="slogan container container--90">
-        <div class="slogan--item">
-            <h1>
-                <spring:message code="pages.content.header"/>
-            </h1>
-        </div>
-    </div>
 </header>
