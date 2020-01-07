@@ -9,7 +9,7 @@ import java.util.*;
 
 @Getter
 @Setter
-@ToString(exclude = {""})
+
 @EqualsAndHashCode(of = "id")
 @RequiredArgsConstructor
 
