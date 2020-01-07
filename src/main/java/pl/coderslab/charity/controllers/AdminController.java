@@ -78,7 +78,7 @@ public class AdminController {
     public String allAdminsPageShow() {
         return "admin/admins";
     }
-    //------INSTITUTIONS--------------
+
 
 
 
@@ -107,7 +107,7 @@ public class AdminController {
 
     @GetMapping("/user/edit/{id}")
     public String userEdit(@PathVariable long id, Model model) {
-        model.addAttribute("user", userRepository.findById(id));
+        model.addAttribute("user", userRepository.getOne (id));
         return "admin/userlist";
     }
 
