@@ -1,15 +1,21 @@
 package pl.coderslab.charity.controllers;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.domain.entities.Donation;
 import pl.coderslab.charity.domain.entities.User;
 import pl.coderslab.charity.domain.repository.DonationRepository;
 import pl.coderslab.charity.domain.repository.UserRepository;
+import pl.coderslab.charity.dtos.DonationDataDTO;
+import pl.coderslab.charity.services.DonationServices;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import java.security.Principal;
 
@@ -20,12 +26,14 @@ import java.security.Principal;
         private final UserRepository userRepository;
         private final PasswordEncoder passwordEncoder;
         private final DonationRepository donationRepository;
+        private final DonationServices donationServices;
 
-        public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, DonationRepository donationRepository) {
+        public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, DonationRepository donationRepository, DonationServices donationServices) {
 
             this.userRepository = userRepository;
             this.passwordEncoder = passwordEncoder;
             this.donationRepository = donationRepository;
+            this.donationServices = donationServices;
         }
 
         @GetMapping("/manage")
@@ -68,6 +76,23 @@ import java.security.Principal;
             model.addAttribute ( "donations", donationRepository.findAllByUserId ( user.getId () ) );
             return "user/userdonations";
         }
+///////////////////////////////////////////////////////////
+        @GetMapping("/changedetalis")
+        public String detailsChange(Model model , Long id){
+
+            model.addAttribute("user", userRepository.findUserById ( id ) );
+            return "user/changedetails";
+        }
+
+        @PostMapping("/changedetails")
+        public String detailsChange(@ModelAttribute User user ){
+
+            userRepository.save ( user );
+            return "user/manage";
+        }
+
+
+
 
     }
 
