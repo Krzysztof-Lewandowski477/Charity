@@ -64,6 +64,7 @@ public class DonationController {
         donation.setPickUpTime( LocalTime.parse(req.getParameter("time")));
         donation.setUser(userRepository.findUserByEmail(principal.getName()));
         donation.setQuantity(Integer.parseInt ( req.getParameter("bags")));
+        donation.setPhoneNumber ( req.getParameter ( "phoneNumber" ) );
         donation.setStreet(req.getParameter("street"));
         donation.setZipCode(req.getParameter("zipCode"));
         donation.setStatus("nieodebrany");
