@@ -21,7 +21,7 @@ public class SimpleAuthenticationSuccessHandler implements AuthenticationSuccess
         if (roles.contains("ROLE_ADMIN")) {
             httpServletResponse.sendRedirect("/admin");
         } else {
-            httpServletResponse.sendRedirect("/index");
+            httpServletResponse.sendRedirect("/");
         }
     }
 }
