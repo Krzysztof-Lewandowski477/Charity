@@ -32,7 +32,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Bean
     public LocaleContextResolver localeResolver() {
         CookieLocaleResolver sessionLocaleResolver = new CookieLocaleResolver();
-        sessionLocaleResolver.setDefaultLocale(new Locale ("en"));
+        sessionLocaleResolver.setDefaultLocale(new Locale ("pl"));
         return sessionLocaleResolver;
     }
 }
