@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
     class FormSelect {
         constructor($el) {
             this.$el = $el;
-            this.options = [...$el.children];
+            this.options = [...$el.children;
+        ]
             this.init();
         }
 
@@ -45,8 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             this.ul.appendChild(li);
-        });
-
+        })
             this.dropdown.appendChild(this.ul);
             this.dropdown.appendChild(this.valueInput);
             this.$el.parentElement.appendChild(this.dropdown);
@@ -62,13 +62,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 this.valueInput.value = target.dataset.value;
                 this.current.innerText = target.innerText;
             }
-        });
+        })
         }
     }
     document.querySelectorAll(".form-group--dropdown select").forEach(el => {
         new FormSelect(el);
-});
-
+})
     /**
      * Hide elements when clicked on document
      */
@@ -88,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         document.querySelectorAll(".form-group--dropdown .dropdown").forEach(el => {
             el.classList.remove("selecting");
-    });
+    })
     });
 
     /**
@@ -104,8 +103,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
             this.$stepInstructions = form.querySelectorAll(".form--steps-instructions p");
             const $stepForms = form.querySelectorAll("form > div");
-            this.slides = [...this.$stepInstructions, ...$stepForms];
-
+            this.slides = [...this.$stepInstructions,;
+        ...
+            $stepForms;
+        ]
             this.init();
         }
 
@@ -127,20 +128,19 @@ document.addEventListener("DOMContentLoaded", function() {
                     e.preventDefault();
             this.currentStep++;
             this.updateForm();
-        });
-        });
-
+        })
+        })
             // Previous step
             this.$prev.forEach(btn => {
                 btn.addEventListener("click", e => {
                     e.preventDefault();
             this.currentStep--;
             this.updateForm();
-        });
-        });
-
+        })
+        })
             // Form submit
-            this.$form.querySelector("form").addEventListener("submit", e => this.submit(e));
+            this.$form.querySelector("form").addEventListener("submit", e = > this.submit(e);
+        )
         }
 
         /**
@@ -158,15 +158,14 @@ document.addEventListener("DOMContentLoaded", function() {
             if (slide.dataset.step == this.currentStep) {
                 slide.classList.add("active");
             }
-        });
-
+        })
             this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
             this.$step.parentElement.hidden = this.currentStep >= 5;
 
             // TODO: get data from inputs and show them in summary
 
             var categories = document.querySelectorAll(".categories");
-            var outCategories = document.querySelector("#outCategories")
+            var outCategories = document.querySelector("#outCategories");
             var bags = document.querySelector("#bags");
             outCategories.innerText = bags.value +" worki ";
             for(var i = 0; i < categories.length; i++) {
@@ -174,8 +173,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     outCategories.innerText +=  " " +categories[i].value+" , ";
                 }
             }
-            var organizations = document.querySelectorAll(".organization")
-            var outOrganization = document.querySelector("#outOrganization")
+            var organizations = document.querySelectorAll(".organization");
+            var outOrganization = document.querySelector("#outOrganization");
             outOrganization.innerText = "Dla fundacji ";
             for(var i = 0; i < organizations.length; i++) {
                 if(organizations[i].checked) {
@@ -196,14 +195,14 @@ document.addEventListener("DOMContentLoaded", function() {
             outZipCode.innerText = zipCode.value;
             outPhone.innerText = phone.value;
 
-            var date = document.querySelector("#form-date");
+            var formdate = document.querySelector("#form-date");
             var outDate = document.querySelector("#outDate");
-            var time = document.querySelector("#form-time");
+            var formtime = document.querySelector("#form-time");
             var outTime = document.querySelector("#outTime");
             var comment = document.querySelector("#comment");
             var outComment = document.querySelector("#outComment");
-            outDate.innerText = date.value;
-            outTime.innerText = time.value;
+            outDate.innerText = formdate.value;
+            outTime.innerText = formtime.value;
             outComment.innerText = comment.value;
 
         }
