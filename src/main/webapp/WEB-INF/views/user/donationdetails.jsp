@@ -28,7 +28,7 @@
                 <td> <b>Status: </b> <br/>
                 <td>${donation.status}</td>
                 <td><b> <a href="${detailsURL}">Zmiana statusu</a></b></td>
-                <c:url value="/donation/changestatus" var="detailsURL">
+                <c:url value="/changestatus" var="detailsURL">
                     <c:param name="id" value="${donation.id}"/>
                 </c:url>
             </tr>
