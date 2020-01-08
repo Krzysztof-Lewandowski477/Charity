@@ -14,7 +14,7 @@
 <body>
 <jsp:include page="../elements/header.jsp"/>
 <div class="container container--85" style="text-align: center;">
-    <table id="tabAdmins" style="text-align: center;">
+    <table  style="text-align: right;">
         <h1>Moje dary</h1>
         <h2>
             <tr>
@@ -30,7 +30,7 @@
                 <td>${donation.city}</td>
                 <td>${donation.pickUpComment}</td>
                 <td><b> <a href="${detailsURL}">Szczegóły</a></b></td>
-                <c:url value="/donation/details" var="detailsURL">
+                <c:url value="/details" var="detailsURL">
                     <c:param name="id" value="${donation.id}"/>
                 </c:url>
 
