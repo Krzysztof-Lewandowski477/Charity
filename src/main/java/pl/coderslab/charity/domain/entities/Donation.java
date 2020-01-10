@@ -36,7 +36,7 @@ public class Donation {
     @Column(nullable = false)
     private String zipCode;
     @Column(nullable = false)
-    private Integer phoneNumber;
+    private String phoneNumber;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
     @DateTimeFormat(pattern = "HH:mm")
