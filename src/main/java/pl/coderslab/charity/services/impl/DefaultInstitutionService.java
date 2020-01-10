@@ -26,4 +26,19 @@ public class DefaultInstitutionService implements InstitutionService {
         Institution institution = modelMapper.map(institutionDataDTO,Institution.class);
         institutionRepository.save ( institution );
     }
+
+    @Override
+    public void delete(InstitutionDataDTO institutionDataDTO, Long id) {
+        ModelMapper modelMapper = new ModelMapper ();
+        Institution institution = modelMapper.map ( institutionDataDTO, Institution.class );
+        institutionRepository.delete ( institution );
+    }
+
+    @Override
+    public void update(InstitutionDataDTO institutionDataDTO, Long id) {
+            ModelMapper modelMapper = new ModelMapper ();
+            Institution institution = modelMapper.map ( institutionDataDTO, Institution.class );
+            institutionRepository.findById ( id );
+            institutionRepository.save ( institution );
+    }
 }
