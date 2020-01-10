@@ -23,7 +23,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-@RequestMapping
+
 @Slf4j
 public class DonationController {
 
@@ -76,16 +76,16 @@ public class DonationController {
         return "form-confirmation";
     }
 
-    @GetMapping("donation/details")
+    @GetMapping("/details")
     public String detailsPage(Long id, Model model){
         model.addAttribute("donation", donationRepository.findDonationById(id));
         return "user/donationdetails";
     }
-
-    @GetMapping("donation/changestatus")
+//equals
+    @GetMapping("/changestatus")
     public String changeDonationStatus(Long id){
         Donation donation = donationRepository.findDonationById(id);
-        if(donation.getStatus() == "odebrany"){
+        if(equals ( donation ) ){
             donationRepository.changeStatusToUnGet(id);
         }else{
             donationRepository.changeStatusToGet(id);
