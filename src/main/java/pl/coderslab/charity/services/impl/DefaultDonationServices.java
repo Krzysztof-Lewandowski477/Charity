@@ -11,9 +11,7 @@ import pl.coderslab.charity.domain.repository.DonationRepository;
 import pl.coderslab.charity.dtos.DonationDataDTO;
 import pl.coderslab.charity.services.DonationServices;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+
 
 
 @Transactional
@@ -33,7 +31,7 @@ public class DefaultDonationServices implements DonationServices {
 
         log.debug ( "zapis dotacji: {}", donation );
         donationRepository.save ( donation );
-        log.debug ( "zapisano dotacje: {}", donation );
+        log.debug("co się stało się? {}", donation);
     }
 
     @Override
