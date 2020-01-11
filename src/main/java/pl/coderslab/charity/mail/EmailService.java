@@ -2,7 +2,7 @@ package pl.coderslab.charity.mail;
 
 import org.springframework.mail.SimpleMailMessage;
 
-public interface MailService {
+public interface EmailService {
 
     void sendSimpleMessage(String to,
                            String subject,
