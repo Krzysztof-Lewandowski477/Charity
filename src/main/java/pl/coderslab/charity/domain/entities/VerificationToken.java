@@ -5,8 +5,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name = "certificationTokens")
@@ -14,7 +16,7 @@ import java.util.Date;
 @Setter
 @ToString
 public class VerificationToken {
-    private static final int EXPIRATION = 60 * 24;
+    private static final int EXPIRATION =24;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,14 +29,19 @@ public class VerificationToken {
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
 
-    private Date expiryDate;
+    private LocalDateTime expiryDate;
 
-    private Date calculateExpiryDate(int expiryTimeInMinutes) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(new Date().getTime());
-        cal.add(Calendar.MINUTE, expiryTimeInMinutes);
-        return new Date(cal.getTime().getTime());
+    private LocalDateTime calculateExpiryDate() {
+
+        return LocalDateTime.now().plusHours(EXPIRATION);
     }
+
+    public VerificationToken(User user) {
+        this.user = user;
+        expiryDate = calculateExpiryDate();
+        token = UUID.randomUUID().toString();
+    }
+
 
 
 }
