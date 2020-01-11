@@ -5,19 +5,18 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
-@Component
+
 @Service
-public class MailServiceImpl implements MailService {
+public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender emailSender;
 
-    public MailServiceImpl(JavaMailSender emailSender) {
+    public EmailServiceImpl(JavaMailSender emailSender) {
         this.emailSender = emailSender;
     }
 
