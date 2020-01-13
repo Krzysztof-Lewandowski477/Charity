@@ -27,7 +27,6 @@ public class DonationDataDTO {
     private String city;
     @NotNull
     private String zipCode;
-
     @NotNull
     private String phoneNumber;
     @NotNull
