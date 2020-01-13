@@ -83,7 +83,7 @@ public class DonationController {
 @GetMapping("/changestatus")
 public String changeDonationStatus(Long id,DeliverStatusDTO statusDTO){
     Donation donation = donationRepository.findDonationById(id);
-    if(equals ( donation ) ){
+    if(equals ( donation.getStatus () =="odebrany" )  ) {
         donationRepository.changeStatusToUnGet(id);
     }else{
         donationRepository.changeStatusToGet(id);
