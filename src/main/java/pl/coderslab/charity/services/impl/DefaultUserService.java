@@ -58,7 +58,7 @@ public class DefaultUserService implements UserService {
     @Override
     public void userChangePassword(PasswordDTO passwordDTO) {
 
-        String username = Utils.getUsername();
+        String username = Utils.getName();
         User user = userRepository.findUserByEmail(username);
         user.setPassword(passwordEncoder.encode(passwordDTO.getPassword()));
         userRepository.save(user);
