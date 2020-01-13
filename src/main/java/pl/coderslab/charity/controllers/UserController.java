@@ -1,17 +1,16 @@
 package pl.coderslab.charity.controllers;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.domain.entities.Donation;
 import pl.coderslab.charity.domain.entities.User;
 import pl.coderslab.charity.domain.repository.DonationRepository;
 import pl.coderslab.charity.domain.repository.UserRepository;
-import pl.coderslab.charity.dtos.DonationDataDTO;
+import pl.coderslab.charity.dtos.PasswordDTO;
 import pl.coderslab.charity.services.DonationServices;
+import pl.coderslab.charity.services.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,13 +26,15 @@ import java.security.Principal;
         private final PasswordEncoder passwordEncoder;
         private final DonationRepository donationRepository;
         private final DonationServices donationServices;
+        private final UserService userService;
 
-        public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, DonationRepository donationRepository, DonationServices donationServices) {
+        public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, DonationRepository donationRepository, DonationServices donationServices, UserService userService) {
 
             this.userRepository = userRepository;
             this.passwordEncoder = passwordEncoder;
             this.donationRepository = donationRepository;
             this.donationServices = donationServices;
+            this.userService = userService;
         }
 
         @GetMapping("/manage")
@@ -58,14 +59,18 @@ import java.security.Principal;
         }
 
         @GetMapping("/changePassword")
-        public String preparePasswordChange() {
+        public String preparePasswordChange(Model model) {
+            model.addAttribute ( "user", new PasswordDTO () );
             return "user/changepassword";
         }
 
         @PostMapping("/changePassword")
-        public String processPasswordChange(String password, Principal principal, HttpServletRequest request) throws ServletException {
-            String username = principal.getName ();
-            userRepository.changePasswordByUsername ( username, passwordEncoder.encode ( password ) );
+        public String processPasswordChange(@ModelAttribute("user") @Valid PasswordDTO changePassword,HttpServletRequest request,
+                                            BindingResult result) throws ServletException {
+            if (result.hasErrors()) {
+                return "user/edit-user-profile";
+            }
+            userService.userChangePassword (changePassword);
             request.logout ();
             return "redirect:/login";
         }

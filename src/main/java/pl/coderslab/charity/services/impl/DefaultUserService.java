@@ -1,25 +1,36 @@
 package pl.coderslab.charity.services.impl;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.charity.domain.entities.Role;
 import pl.coderslab.charity.domain.entities.User;
 import pl.coderslab.charity.domain.repository.RoleRepository;
 import pl.coderslab.charity.domain.repository.UserRepository;
+import pl.coderslab.charity.dtos.PasswordDTO;
 import pl.coderslab.charity.services.UserService;
+import pl.coderslab.charity.util.Utils;
 
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.HashSet;
-
+@Service
+@Transactional
+@Slf4j
 public class DefaultUserService implements UserService {
     final private UserRepository userRepository;
 
+
     final private RoleRepository roleRepository;
 
-    final private BCryptPasswordEncoder passwordEncoder;
+    final private PasswordEncoder passwordEncoder;
 
     public DefaultUserService(UserRepository userRepository,
-                           RoleRepository roleRepository,
-                           BCryptPasswordEncoder passwordEncoder){
+                               RoleRepository roleRepository,
+                              PasswordEncoder passwordEncoder){
+
+
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
@@ -42,6 +53,15 @@ public class DefaultUserService implements UserService {
     @Override
     public boolean checkIfValidOldPassword(final User user, final String oldPassword) {
         return passwordEncoder.matches(oldPassword, user.getPassword());
+    }
+
+    @Override
+    public void userChangePassword(PasswordDTO passwordDTO) {
+
+        String username = Utils.getUsername();
+        User user = userRepository.findUserByEmail(username);
+        user.setPassword(passwordEncoder.encode(passwordDTO.getPassword()));
+        userRepository.save(user);
     }
 }
 
