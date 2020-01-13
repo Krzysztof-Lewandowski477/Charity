@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.coderslab.charity.dtos.RegistrationDataDTO;
-import pl.coderslab.charity.mail.MailService;
+
+import pl.coderslab.charity.mail.EmailService;
 import pl.coderslab.charity.services.RegistrationService;
 
 import javax.validation.Valid;
@@ -20,12 +21,13 @@ import javax.validation.Valid;
 public class RegisterController {
 
     private final RegistrationService registrationService;
-    private final MailService mailService;
+    private final EmailService mailService;
 
 
 
-    public RegisterController(RegistrationService registrationService, MailService mailService) {
+    public RegisterController(RegistrationService registrationService, EmailService mailService) {
         this.registrationService = registrationService;
+
         this.mailService = mailService;
     }
 
@@ -45,5 +47,8 @@ public class RegisterController {
         mailService.sendSimpleMessage(registrationData.getEmail(), "Register Confirmation", "test");
         return "redirect:/";
     }
+
+
+
 }
 
