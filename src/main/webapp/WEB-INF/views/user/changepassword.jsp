@@ -18,15 +18,17 @@
     <h1 class="title">
         Zmiana hasła
     </h1>
-    <form method="post">
+    <form:form method="post" modelAttribute="user">
         <div class="form-group">
-            <input type="password" name="password" placeholder="Nowe hasło"/>
+            <h1>Nowe hasło</h1>
+            <form:password path="password" required="true" placeholder="${newPasswordPlaceholder}"/>
+            <form:errors path="password" element="p"/>
         </div>
         <div class="form-group form-group--buttons">
             <button class="btn" type="submit">Zmień hasło</button>
         </div>
         <sec:csrfInput/>
-    </form>
+    </form:form>
 </section>
 
 </body>
