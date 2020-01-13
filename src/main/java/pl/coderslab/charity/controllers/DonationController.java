@@ -3,17 +3,16 @@ package pl.coderslab.charity.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.domain.entities.Category;
 import pl.coderslab.charity.domain.entities.Donation;
 import pl.coderslab.charity.domain.repository.CategoryRepository;
 import pl.coderslab.charity.domain.repository.DonationRepository;
 import pl.coderslab.charity.domain.repository.InstitutionRepository;
 import pl.coderslab.charity.domain.repository.UserRepository;
+import pl.coderslab.charity.dtos.DeliverStatusDTO;
 import pl.coderslab.charity.services.DonationServices;
-
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.time.LocalDate;
@@ -23,7 +22,6 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-
 @Slf4j
 public class DonationController {
 
@@ -82,15 +80,16 @@ public class DonationController {
         return "user/donationdetails";
     }
 //equals
-    @GetMapping("/changestatus")
-    public String changeDonationStatus(Long id){
-        Donation donation = donationRepository.findDonationById(id);
-        if(equals ( donation ) ){
-            donationRepository.changeStatusToUnGet(id);
-        }else{
-            donationRepository.changeStatusToGet(id);
-        }
-        return "user/donationdetails";
+@GetMapping("/changestatus")
+public String changeDonationStatus(Long id,DeliverStatusDTO statusDTO){
+    Donation donation = donationRepository.findDonationById(id);
+    if(equals ( donation ) ){
+        donationRepository.changeStatusToUnGet(id);
+    }else{
+        donationRepository.changeStatusToGet(id);
+        donationServices.CourierVisit ( statusDTO );
     }
+    return "redirect:/user/donationdetails";
+}
 
 }
