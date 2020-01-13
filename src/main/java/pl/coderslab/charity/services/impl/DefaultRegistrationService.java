@@ -12,6 +12,7 @@ import pl.coderslab.charity.domain.repository.RoleRepository;
 import pl.coderslab.charity.domain.repository.TokenRepository;
 import pl.coderslab.charity.domain.repository.UserRepository;
 import pl.coderslab.charity.dtos.RegistrationDataDTO;
+
 import pl.coderslab.charity.mail.EmailService;
 import pl.coderslab.charity.services.RegistrationService;
 @Transactional
@@ -40,8 +41,7 @@ public class DefaultRegistrationService implements RegistrationService {
     public void register(RegistrationDataDTO registrationDataDTO) {
         log.debug("Registration data to create user: {}", registrationDataDTO);
         User user = mapper.map(registrationDataDTO, User.class);
-        log.debug("User after mapping from registrationData: {}", user);
-        user.setActive(Boolean.FALSE);
+        user.setActive(Boolean.TRUE);
         String encodedPassword = passwordEncoder.encode(registrationDataDTO.getPassword());
         user.setPassword(encodedPassword);
         Role roleUser = roleRepository.getByName("ROLE_USER");
@@ -50,10 +50,7 @@ public class DefaultRegistrationService implements RegistrationService {
         emailService.sendSimpleMessage(user.getEmail(), "Charity donation app: Complete your Registration!",
                 "To activate your account, please click here (link valid 24 hours) : "
                         +"http://localhost:8080/confirm-account?token="+verificationToken.getToken());
-        log.debug("VerificationToken object: {}", verificationToken);
-        log.debug("User before save: {}", user);
         userRepository.save(user);
-        log.debug("User after save: {}", user);
         verificationToken.getUser().setId(userRepository.findUserByEmail(user.getEmail()).getId());
         tokenRepository.save(verificationToken);
     }
