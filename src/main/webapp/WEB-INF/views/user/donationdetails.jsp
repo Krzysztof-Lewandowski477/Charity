@@ -29,6 +29,10 @@
             <tr>
                 <td> <b>Status: </b> <br/>
                 <td>${donation.status}</td>
+            </tr>
+            <tr>
+                <td><b>Data i czas odebrania:</b></td>
+                <td>${donation.deliverTime}</td>
                 <c:url value="/changestatus" var="detailsURL">
                     <c:param name="id" value="${donation.id}"/>
                 </c:url>
