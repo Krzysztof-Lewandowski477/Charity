@@ -17,30 +17,34 @@
 <body class="has-navbar-fixed-top">
 <jsp:include page="../elements/header.jsp"/>
 <h2>Twoje dane</h2>
-<form:form method="POST" modelAttribute="user" class="bg-light p-5 contact-form">
-    <spring:bind path="firstName">
-        <div class="form-group ${status.error ? 'has-error' : ''}">
-            <h3 for="inputFirstName">Imię</h3>
+<form:form method="post" modelAttribute="user">
+
+
+            <h3>Imię</h3>
             <form:input type="text" path="name" class="form-control" placeholder="First Name"
                         autofocus="true" id="inputFirstName"/>
             <form:errors path="name"/>
-        </div>
-    </spring:bind>
-    <spring:bind path="surname">
-        <div class="form-group ${status.error ? 'has-error' : ''}">
-            <h3 for="inputFirstName">Nazwisko</h3>
+    <div class="form-group">
+
+<%--        <form:input path="email" required="true" placeholder="${emailPlaceholder}"/>--%>
+<%--        <form:errors path="email" element="p"/>--%>
+    </div>
+    <form:hidden path="email"/>
+    <form:hidden name="id" path="id"/>
+    <form:hidden path="password"/>
+    <form:hidden path="active"/>
+            <h3>Nazwisko</h3>
             <form:input type="text" path="surname" class="form-control" placeholder="Last Name"
                         autofocus="true"/>
             <form:errors path="surname"/>
-        </div>
-    </spring:bind>
 
-    <form:hidden name="id" path="id"/>
-    <form:hidden path="password"/>
+
+
+
     <div class="form-group form-group--buttons">
         <button class="btn" type="submit">Akceptuj zmiany</button>
-        <a href="/password" class="btn">Zmień hasło</a>
     </div>
+    <sec:csrfInput/>
 </form:form>
 </section>
 
