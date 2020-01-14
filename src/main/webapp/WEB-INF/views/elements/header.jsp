@@ -1,7 +1,6 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ page isELIgnored="false" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <header class="header--main-page">
@@ -36,11 +35,20 @@
 
         <ul>
             <li><a href="/" class="btn btn--without-border active">Start</a></li>
-            <li><a href="#about" class="btn btn--without-border"><spring:message code="pages.what.is.going.on"/></a></li>
-            <li><a href="#about" class="btn btn--without-border"><spring:message code="pages.about"/></a></li>
-            <li><a href="#" class="btn btn--without-border"><spring:message code="pages.fundations.and.organization"/></a></li>
-            <li><a href="#" class="btn btn--without-border"><spring:message code="pages.contact"/></a></li>
+            <li><a href="#steps" class="btn btn--without-border"><spring:message code="pages.what.is.going.on"/></a></li>
+            <li><a href="#about-us" class="btn btn--without-border"><spring:message code="pages.about"/></a></li>
+            <li><a href="#help" class="btn btn--without-border"><spring:message code="pages.fundations.and.organization"/></a></li>
+            <sec:authorize access="hasRole('USER')">
+                <li>
+                    <c:url var="userDonation" value="/form"/>
+                    <a href="${userDonation}" class="btn btn--without-border">
+                        Utwórz donacje
+                    </a>
+                </li>
+            </sec:authorize>
+            <li><a href="#contact" class="btn btn--without-border"><spring:message code="pages.contact"/></a></li>
         </ul>
     </nav>
-
+    <script src="<c:url value="/resources/js/app.js"/>"></script>
+    <script src="<c:url value="/resources/js/app2.js"/>"></script>
 </header>
