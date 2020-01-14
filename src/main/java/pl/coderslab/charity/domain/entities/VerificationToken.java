@@ -1,20 +1,17 @@
 package pl.coderslab.charity.domain.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
 @Table(name = "certificationTokens")
 @Getter
 @Setter
-@ToString
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class VerificationToken {
     private static final int EXPIRATION =24;
 
@@ -22,7 +19,7 @@ public class VerificationToken {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
+    @Column(unique = true)
     private String token;
 
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
