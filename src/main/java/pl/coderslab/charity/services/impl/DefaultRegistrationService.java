@@ -39,9 +39,8 @@ public class DefaultRegistrationService implements RegistrationService {
 
     @Override
     public void register(RegistrationDataDTO registrationDataDTO) {
-        log.debug("Registration data to create user: {}", registrationDataDTO);
         User user = mapper.map(registrationDataDTO, User.class);
-        user.setActive(Boolean.TRUE);
+        user.setActive(Boolean.FALSE);
         String encodedPassword = passwordEncoder.encode(registrationDataDTO.getPassword());
         user.setPassword(encodedPassword);
         Role roleUser = roleRepository.getByName("ROLE_USER");
