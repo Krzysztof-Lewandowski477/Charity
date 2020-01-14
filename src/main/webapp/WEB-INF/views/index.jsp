@@ -34,7 +34,7 @@
     </div>
 </section>
 
-<section class="steps">
+<section class="steps" id="steps">
     <h2><spring:message code="pages.index.body.4steps"/></h2>
 
     <div class="steps--container">
@@ -60,10 +60,10 @@
         </div>
     </div>
 
-    <a href="#" class="btn btn--large"><spring:message code="pages.create.account"/></a>
+    <a href="/register" class="btn btn--large"><spring:message code="pages.create.account"/></a>
 </section>
 
-<section class="about-us">
+<section class="about-us" id="about-us">
     <div class="about-us--text">
         <h2><spring:message code="pages.about"/></h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
@@ -74,7 +74,7 @@
     </div>
 </section>
 
-<section class="help">
+<section class="help" id="help">
     <h2><spring:message code="pages.who.helps"/></h2>
 
     <!-- SLIDE 1 -->
@@ -106,5 +106,6 @@
 <%--footer--%>
 <jsp:include page="/WEB-INF/views/elements/footer.jsp"/>
 <%--footer--%>
+<script src="<c:url value="./resources/js/app.js"/>"></script>
 </body>
 </html>
