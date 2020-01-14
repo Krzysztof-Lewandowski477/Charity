@@ -31,7 +31,7 @@ public class User {
     private String passwordConfirm;
     private Boolean active = Boolean.FALSE;
     @ManyToMany
-    private Set<Role> roles = new HashSet<> (  );
+    private Set<Role> roles = new HashSet<> ( );
     @OneToMany(mappedBy = "user")
     private List<Donation> donations = new ArrayList<>();
 
