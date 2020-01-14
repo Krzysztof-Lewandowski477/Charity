@@ -1,6 +1,6 @@
 package pl.coderslab.charity.mail;
 
-import org.springframework.mail.SimpleMailMessage;
+
 
 public interface EmailService {
 
@@ -8,13 +8,5 @@ public interface EmailService {
                            String subject,
                            String text);
 
-    void sendSimpleMessageUsingTemplate(String to,
-                                        String subject,
-                                        SimpleMailMessage template,
-                                        String... templateArgs);
 
-    void sendMessageWithAttachment(String to,
-                                   String subject,
-                                   String text,
-                                   String pathToAttachment);
 }
