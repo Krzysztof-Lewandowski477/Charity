@@ -50,10 +50,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests ()
+                .antMatchers("/").permitAll()
                 .antMatchers ( "/image/**" ).permitAll ()
                 .antMatchers ( "/register" ).permitAll ()
-                .antMatchers ( "/login" ).permitAll ()
-                .antMatchers ( "/logout","/contacts").authenticated ()
+                .antMatchers("/confirm-account/**", "/confirm-account").anonymous()
+                .antMatchers("/sendingpassword", "/sendingpassword/**").anonymous()
+                .antMatchers("/repassword", "/repassword/**").anonymous()
+                .antMatchers ( "/login" ,"/sendingpassword").permitAll ()
+                .antMatchers ( "/logout").authenticated ()
                 .antMatchers ( "/user","/user/**" ).hasRole ( "USER" )
                 .antMatchers ( "/admin", "/admin/**" ).hasRole ( "ADMIN" )
                 .anyRequest ().authenticated ()
