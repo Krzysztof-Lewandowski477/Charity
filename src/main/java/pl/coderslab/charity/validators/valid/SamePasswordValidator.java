@@ -18,7 +18,7 @@ public class SamePasswordValidator implements ConstraintValidator<SamePasswords,
             boolean valid = registrationData.getPassword ().equals ( registrationData.getRePassword () );
             if (!valid) {
                 context.disableDefaultConstraintViolation ();
-                context.buildConstraintViolationWithTemplate ( "SamePassword.registrationData.rePassword" )
+                context.buildConstraintViolationWithTemplate ( "Not Same Password" )
                         .addPropertyNode ( "rePassword" ).addConstraintViolation ();
             }
             return valid;
