@@ -20,15 +20,17 @@
         </div>
         <div class="form-group">
             <input type="password" name="password" placeholder="Hasło" />
-            <a href="#" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
+            <a href="/sendingpassword" class="btn btn--small btn--without-border reset-password">Przypomnij hasło</a>
         </div>
 
         <div class="form-group form-group--buttons">
-            <a href="/register" class="btn">Załóż konto</a>
             <button class="btn" type="submit">Zaloguj się</button>
+            <a href="/register" class="btn">Załóż konto</a>
+
         </div>
         <sec:csrfInput/>
     </form>
+
 </section>
 <jsp:include page="./elements/footer.jsp"/>
 </body>
