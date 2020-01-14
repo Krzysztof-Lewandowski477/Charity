@@ -30,9 +30,7 @@ public class DefaultDonationServices implements DonationServices {
     @Autowired
     private final DonationRepository donationRepository;
     private final UserRepository userRepository;
-    private final CategoryRepository categoryRepository;
-    private final ModelMapper mapper;
-    private final InstitutionRepository institutionRepository;
+
 
 
 
