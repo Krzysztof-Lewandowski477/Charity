@@ -40,8 +40,6 @@ public class DefaultDonationServices implements DonationServices {
     public void addDonation(DonationDataDTO donationData) {
         Donation donation = new Donation();
         donation.setQuantity(donationData.getQuantity());
-        donation.setInstitution(institutionRepository.getOne(donationData.getInstitutionId()));
-        donation.setCategories(categoryRepository.findAllById(donationData.getCategoriesId()));
         donation.setStreet(donationData.getStreet());
         donation.setCity(donationData.getCity());
         donation.setZipCode(donationData.getZipCode());
