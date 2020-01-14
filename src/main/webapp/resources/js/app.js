@@ -195,14 +195,14 @@ document.addEventListener("DOMContentLoaded", function() {
             outZipCode.innerText = zipCode.value;
             outPhone.innerText = phone.value;
 
-            var formdate = document.querySelector("#form-date");
+            var date = document.querySelector("#form-date");
             var outDate = document.querySelector("#outDate");
-            var formtime = document.querySelector("#form-time");
+            var time = document.querySelector("#form-time");
             var outTime = document.querySelector("#outTime");
             var comment = document.querySelector("#comment");
             var outComment = document.querySelector("#outComment");
-            outDate.innerText = formdate.value;
-            outTime.innerText = formtime.value;
+            outDate.innerText = date.value;
+            outTime.innerText = time.value;
             outComment.innerText = comment.value;
 
         }
