@@ -3,8 +3,9 @@ package pl.coderslab.charity.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletRequest;
+
+
 @Controller
 public class LoginController {
 
@@ -18,7 +19,6 @@ public class LoginController {
         return "login";
     }
 
-
     @GetMapping("/logged")
     public String onlyForLoggedIn(HttpServletRequest request) {
         if (request.isUserInRole ( "ROLE_USER" )) {
@@ -26,7 +26,6 @@ public class LoginController {
         }
         return "redirect:/";
     }
-
 
     @GetMapping("/admin")
     public String onlyForLoggedAdmin(HttpServletRequest request) {
