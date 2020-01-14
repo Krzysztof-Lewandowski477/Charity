@@ -11,6 +11,7 @@ import pl.coderslab.charity.domain.repository.UserRepository;
 import pl.coderslab.charity.dtos.PasswordDTO;
 import pl.coderslab.charity.services.DonationServices;
 import pl.coderslab.charity.services.UserService;
+import pl.coderslab.charity.util.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +42,7 @@ import java.security.Principal;
         public String userManage() {
             return "/user/manage";
         }
+
 
         @GetMapping("/changeEmail")
         public String prepageChangeEmailPage(Principal principal, Model model) {
@@ -83,17 +85,16 @@ import java.security.Principal;
         }
 ///////////////////////////////////////////////////////////
         @GetMapping("/changedetalis")
-        public String detailsChange(Model model , Long id){
-
-            model.addAttribute("user", userRepository.findUserById ( id ) );
+        public String detailsChange(Model model){
+            model.addAttribute("user", userRepository.findUserByEmail ( Utils.getName () ) );
             return "user/changedetails";
         }
 
-        @PostMapping("/changedetails")
-        public String detailsChange(@ModelAttribute User user ){
+        @PostMapping("/changedetalis")
+        public String detailsChangePost(@ModelAttribute("user") User user ){
 
             userRepository.save ( user );
-            return "user/manage";
+            return "redirect:/login";
         }
 
 
