@@ -47,8 +47,8 @@ public class DefaultRegistrationService implements RegistrationService {
         Role roleUser = roleRepository.getByName("ROLE_USER");
         user.getRoles().add(roleUser);
         VerificationToken verificationToken = new VerificationToken(user);
-        emailService.sendSimpleMessage(user.getEmail(), "Charity donation app: Complete your Registration!",
-                "To activate your account, please click here (link valid 24 hours) : "
+        emailService.sendSimpleMessage(user.getEmail(), "Charity donation complete register",
+                "active your account "
                         +"http://localhost:8080/confirm-account?token="+verificationToken.getToken());
         userRepository.save(user);
         verificationToken.getUser().setId(userRepository.findUserByEmail(user.getEmail()).getId());
