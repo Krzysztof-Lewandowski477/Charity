@@ -3,7 +3,6 @@ package pl.coderslab.charity.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.domain.entities.Category;
 import pl.coderslab.charity.domain.entities.Donation;
@@ -12,6 +11,7 @@ import pl.coderslab.charity.domain.repository.DonationRepository;
 import pl.coderslab.charity.domain.repository.InstitutionRepository;
 import pl.coderslab.charity.domain.repository.UserRepository;
 import pl.coderslab.charity.dtos.DeliverStatusDTO;
+import pl.coderslab.charity.services.CategoryService;
 import pl.coderslab.charity.services.DonationServices;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -30,20 +30,22 @@ public class DonationController {
     private final InstitutionRepository institutionRepository;
     private final UserRepository userRepository;
     private final DonationRepository donationRepository;
+    private final CategoryService categoryService;
 
-    public DonationController(CategoryRepository categoryRepository, DonationServices donationServices, InstitutionRepository institutionRepository, UserRepository userRepository, DonationRepository donationRepository) {
+    public DonationController(CategoryRepository categoryRepository, DonationServices donationServices, InstitutionRepository institutionRepository, UserRepository userRepository, DonationRepository donationRepository, CategoryService categoryService) {
         this.categoryRepository = categoryRepository;
         this.donationServices = donationServices;
         this.institutionRepository = institutionRepository;
         this.userRepository = userRepository;
         this.donationRepository = donationRepository;
+        this.categoryService = categoryService;
     }
 
 
     @GetMapping("/form")
     public String prepareDonation(Model model){
         model.addAttribute("institutions", institutionRepository.findAll());
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("categories", categoryService.allCategory ());
         return "form";
     }
 
@@ -69,8 +71,6 @@ public class DonationController {
         donation.setInstitution(institutionRepository.findByName(req.getParameter("organization")));
         model.addAttribute("org", req.getParameter("organization"));
         donationRepository.save(donation);
-
-
         return "form-confirmation";
     }
 
