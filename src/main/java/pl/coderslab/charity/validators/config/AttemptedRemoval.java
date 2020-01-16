@@ -16,7 +16,7 @@ public @interface AttemptedRemoval {
 
 
 
-        String message() default "{krissto87.charity.validation.constraints.ActiveAdmin.message}";
+        String message() default "AttemptedRemoval";
 
         Class<?>[] groups() default {};
 
