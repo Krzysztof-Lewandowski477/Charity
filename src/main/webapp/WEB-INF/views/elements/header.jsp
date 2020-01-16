@@ -34,10 +34,15 @@
         </ul>
 
         <ul>
-            <li><a href="/" class="btn btn--without-border active">Start</a></li>
-            <li><a href="#steps" class="btn btn--without-border"><spring:message code="pages.what.is.going.on"/></a></li>
-            <li><a href="#about-us" class="btn btn--without-border"><spring:message code="pages.about"/></a></li>
-            <li><a href="#help" class="btn btn--without-border"><spring:message code="pages.fundations.and.organization"/></a></li>
+            <li>
+                <c:url var="home" value="/"/>
+                <a href="${home}" class="btn btn--without-border active">
+                    Start
+                </a>
+            </li>
+            <li><a href="/#steps" class="btn btn--without-border"><spring:message code="pages.what.is.going.on"/></a></li>
+            <li><a href="/#about-us" class="btn btn--without-border"><spring:message code="pages.about"/></a></li>
+            <li><a href="/#help" class="btn btn--without-border"><spring:message code="pages.fundations.and.organization"/></a></li>
             <sec:authorize access="hasRole('USER')">
                 <li>
                     <c:url var="userDonation" value="/form"/>
