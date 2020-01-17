@@ -26,15 +26,15 @@
             <sec:authorize access="hasRole('ROLE_USER') and isAuthenticated()">
                 <li>
                     <sec:csrfInput/>
-                    <button class="btn btn--small btn--highlighted">Witaj </button>
+                    <button class="btn btn--small btn--highlighted"><spring:message code="hello.message"/> </button>
                 </li>
-                <li><a href="/logged" class="btn btn--small btn--highlighted">Menu</a></li>
-                <li><a href="/logout" class="btn btn--small btn--highlighted">Wyloguj</a></li>
+                <li><a href="/logged" class="btn btn--small btn--highlighted"><spring:message code="pages.menu"/></a></li>
+                <li><a href="/logout" class="btn btn--small btn--highlighted"><spring:message code="pages.logout"/></a></li>
             </sec:authorize>
 
             <sec:authorize access="!isAuthenticated()">
-                <li><a href="/login" class="btn btn--small btn--highlighted">Zaloguj</a></li>
-                <li><a href="/register" class="btn btn--small btn--highlighted">Załóż konto</a></li
+                <li><a href="/login" class="btn btn--small btn--highlighted"><spring:message code="pages.login"/> </a></li>
+                <li><a href="/register" class="btn btn--small btn--highlighted"><spring:message code="pages.create.account"/> </a></li
                     <sec:csrfInput/>
             </sec:authorize>
         </ul>
@@ -42,10 +42,10 @@
         <ul>
             <li><a href="/#" class="btn btn--without-border active">Start</a></li>
             <li><a href="/#whatisallabout" class="btn btn--without-border">O co chodzi?</a></li>
-            <li><a href="/#aboutus" class="btn btn--without-border">O nas</a></li>
+            <li><a href="/#aboutus" class="btn btn--without-border"><spring:message code="pages.about"/></a></li>
             <li><a href="/#institutions" class="btn btn--without-border">Fundacje i organizacje</a></li>
             <li><a href="/donation" class="btn btn--without-border">Przekaż dary</a></li>
-            <li><a href="/#contact" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="/#contact" class="btn btn--without-border"><spring:message code="pages.contact"/> </a></li>
         </ul>
     </nav>
     <br><br><br><br><br><br><br><br>
