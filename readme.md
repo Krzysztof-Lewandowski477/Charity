@@ -1,12 +1,31 @@
-<img alt="Logo" src="http://coderslab.pl/svg/logo-coderslab.svg" width="400">
 
 
-Przed przystąpieniem do pracy  przeczytaj poniższe wskazówki.
-## Jak zacząć?
+# Charity donation project.
+>Charity Donation project is a web aplication created for educational purposes. 
 
-1. Zaimportuj projekt jako projekt `Maven`, wg poniższych wskazówek:
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Status](#status)
 
-	* W `IntelliJ` wybieramy: `File –> New –> Project from Existing Sources...`
-	* Wskazujemy lokalizację katalogu ze sklonowanym projektem i zatwierdzamy.
-	* Następnie w nowym oknie wybieramy: `Import project from external model` i wskazujemy `Maven`
-	* Wybieramy kolejno opcje: `Next –> Next –> Next –> Finish`
+## General info
+
+This is simple web aplication. 
+
+## Technologies
+
+* Java
+* SPRING
+* HIBERNATE
+* HTML
+* CSS
+* BOOTSTRAP
+
+## Setup
+Aplication can be started using Intelij Idea.
+
+## Status
+In progress, working on i18n.
+
+
