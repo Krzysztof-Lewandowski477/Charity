@@ -16,6 +16,7 @@ This is simple web aplication.
 ## Technologies
 
 * Java
+* JavaScript
 * SPRING
 * HIBERNATE
 * HTML
