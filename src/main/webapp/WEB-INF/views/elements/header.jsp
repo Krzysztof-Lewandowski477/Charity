@@ -12,21 +12,21 @@
             <li><a href="/register" class="btn btn--small btn--highlighted"><spring:message code="pages.create.account"/></a></li>
 </sec:authorize>
             <sec:authorize access="hasRole('ADMIN')">
-                <li><a href="/admin/admins" class="btn btn--small btn--without-border">Administratorzy</a></li>
-                <li><a href="/admin/users" class="btn btn--small btn--without-border">Użytkownicy</a></li>
-                <li><a href="/admin/institutions" class="btn btn--small btn--without-border">Instytucje</a></li>
+                <li><a href="/admin/admins" class="btn btn--small btn--without-border"><spring:message code="pages.admins"/> </a></li>
+                <li><a href="/admin/users" class="btn btn--small btn--without-border"><spring:message code="pages.users"/></a></li>
+                <li><a href="/admin/institutions" class="btn btn--small btn--without-border"><spring:message code="pages.institutions"/></a></li>
 
             </sec:authorize>
             <sec:authorize access="hasRole('USER')">
-                <li><a href="/user/donations" class="btn btn--small btn--without-border">Moje dary</a></li>
+                <li><a href="/user/donations" class="btn btn--small btn--without-border"><spring:message code="pages.my.donations"/> </a></li>
             </sec:authorize>
             <sec:authorize access="hasRole('USER')">
-                <li><a href="/user/manage" class="btn btn--small btn--without-border">Moje konto</a></li>
+                <li><a href="/user/manage" class="btn btn--small btn--without-border"><spring:message code="pages.my.account"/> </a></li>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
                 <li>
                     <form method="post" action="/logout">
-                        <button class="btn btn--small btn--without-border" type="submit">Wyloguj</button>
+                        <button class="btn btn--small btn--without-border" type="submit"><spring:message code="pages.logout"/> </button>
                         <sec:csrfInput/>
                     </form>
                 </li>
@@ -47,7 +47,7 @@
                 <li>
                     <c:url var="userDonation" value="/form"/>
                     <a href="${userDonation}" class="btn btn--without-border">
-                        Utwórz donacje
+                        <spring:message code="pages.donation.create"/>
                     </a>
                 </li>
             </sec:authorize>
