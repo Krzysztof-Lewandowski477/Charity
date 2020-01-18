@@ -27,6 +27,6 @@ This is simple web aplication.
 Aplication can be started using Intelij Idea.
 
 ## Status
-In progress, working on i18n.
+In progress, working on i18n .
 
 
