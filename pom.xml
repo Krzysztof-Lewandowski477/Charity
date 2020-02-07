@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <packaging>war</packaging>
-    <groupId>pl.coderslab</groupId>
+    <groupId>pl.charitydonation</groupId>
     <artifactId>charity</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>charity</name>
-    <description>Charity project, created with love in CodersLab</description>
+    <description>Charity project.Web appliation</description>
 
     <properties>
         <java.version>1.11</java.version>
