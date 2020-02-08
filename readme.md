@@ -22,6 +22,7 @@ This is simple web aplication.
 * HTML
 * CSS
 * BOOTSTRAP
+* SQL
 
 ## Setup
 Aplication can be started using Intelij Idea.
